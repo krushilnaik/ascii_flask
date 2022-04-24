@@ -1,18 +1,13 @@
-# import orm_sqlite as orm
-
-
-# class Letter(orm.Model):
-#     id = orm.IntegerField(primary_key=True)
-#     letter = orm.StringField()
-#     representation = orm.StringField()
-
-
-# db = orm.Database('../alphabet.db')
-# Letter.objects.backend = db
-
-
 from pathlib import Path
-from peewee import CharField, Model, SqliteDatabase
+import sys
+
+from util.custom_logging import critical
+
+try:
+    from peewee import CharField, Model, SqliteDatabase
+except ImportError:
+    critical("Failed to import peewee. Did you install it with pip?")
+    sys.exit(1)
 
 db = SqliteDatabase(Path(__file__).parent.parent / 'alphabet.db')
 

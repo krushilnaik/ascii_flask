@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #223;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+form {
+  display: flex;
+  background-color: white;
+  width: fit-content;
+  margin: auto;
+  border-radius: 999px;
+  font-size: 1.25rem;
+}
+
+form input {
+  background-color: transparent;
+  border-radius: 999px 0 0 999px;
+  border: none;
+  width: 20rem;
+  font-size: inherit;
+  padding: 0 15px;
+}
+
+form button {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-content: center;
+  border-radius: 999px;
+  border: none;
+  font-size: inherit;
+  box-shadow: 0 0 5px black;
+  transition: background-color 300ms;
+  cursor: pointer;
+  background-color: #1e90ff;
+}
+
+form button:hover {
+  background-color: #5eaeff;
+}
+
+button i {
+  color: honeydew;
+  font-size: inherit;
+}
+
+header {
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+  position: relative;
+}
+
+header::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  background-color: aqua;
+  opacity: 0.25;
+  height: 10px;
+  width: 115%;
+  transform: translateX(-50%) skewX(-45deg);
+  z-index: -1;
+}
+
+header span {
+  font-size: 36px;
+  color: honeydew;
+  vertical-align: middle;
+  line-height: 1em;
+  font-family: monospace;
+}
+
+.logo {
+  font-size: 72px;
+
+  background: linear-gradient(
+    132deg,
+    rgb(250, 170, 0) 0%,
+    rgb(237, 19, 19) 50%,
+    rgb(213, 74, 255) 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.art {
+  display: grid;
+  place-content: center;
+  background-color: #1e8fff6c;
+  border-radius: 7px;
+  height: 280px;
+  width: 750px;
+  gap: 25px;
+  box-shadow: 1px 1px 8px rgba(255, 255, 255, 0.466);
+}
+
+.art h2 {
+  font-style: italic;
+  font-family: sans-serif;
+  font-weight: normal;
+  text-align: center;
+  color: honeydew;
+  font-size: 22px;
+}
+
+.ascii {
+  margin: auto;
+  font-family: monospace;
+}
+
+.ascii div {
+  display: flex;
+  gap: 2px;
+}
+
+.fg {
+  color: tomato;
+}
+
+.bg {
+  color: dodgerblue;
+}
