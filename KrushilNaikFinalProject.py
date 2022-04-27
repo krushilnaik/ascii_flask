@@ -28,8 +28,7 @@ app.secret_key = "SUPER_SECRET_KEY"
 
 @app.route("/")
 def index():
-    session.setdefault("art", "")
-    art = json.loads(session["art"])
+    art = json.loads(session.setdefault("art", "[]"))
 
     return render_template("index.html", art=art)
 
