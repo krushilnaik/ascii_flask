@@ -3,8 +3,15 @@
 # Final Project
 
 """
-This builds on my midterm project.
-Changes:
+This is a simple website using the current directory as a server.
+The frontend (http://localhost:3000) is pretty simple;
+Enter some text and hit sumbit for an ASCII art representation.
+If you typed an unsupported character, it'll alert you.
+
+I chose Flask over Django because of substantially less boilerplate code,
+which is better for something being graded by a human
+
+Changes from midterm:
     Use Flask instead of http.server
     Revamp the site UI a bit
 """
@@ -20,12 +27,18 @@ except ImportError:
     critical("Failed to import Flask. Did you install it with pip?")
     sys.exit(1)
 
+
+# Set up the Flask app
 app = Flask(__name__)
 app.secret_key = "SUPER_SECRET_KEY"
 
 
 @app.route("/")
 def index():
+    """
+    The frontend (http://localhost:3000)
+    """
+
     art = json.loads(session.setdefault("art", "[]"))
 
     return render_template("index.html", art=art)
@@ -33,6 +46,11 @@ def index():
 
 @app.route("/ascii", methods=["POST"])
 def art():
+    """
+    The frontend calls this API endpoint
+    to get the inputted text's ASCII art
+    """
+
     text = request.form["text"]
     letters = []
 
@@ -41,6 +59,8 @@ def art():
             char = Letter.get(Letter.letter == letter)
             debug(f"Successfully retrieved ASCII art for '{letter}'")
         except:
+            # If the character we're working on wasn't found in the database
+            # Short circuit and alert the user
             ERROR_MESSAGE = f"Unsupported character '{letter}'"
 
             debug(ERROR_MESSAGE)
@@ -57,4 +77,5 @@ def art():
 
 
 if __name__ == "__main__":
+    # Run the Flask app at http://localhost:3000
     app.run(debug=False, port=3000)
