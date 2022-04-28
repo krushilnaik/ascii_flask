@@ -9,9 +9,7 @@ Changes:
     Revamp the site UI a bit
 """
 
-
 import json
-import os
 import sys
 from models.Letter import Letter
 from util.custom_logging import critical, debug
@@ -36,7 +34,6 @@ def index():
 @app.route("/ascii", methods=["POST"])
 def art():
     text = request.form["text"]
-
     letters = []
 
     for letter in text:
@@ -49,16 +46,15 @@ def art():
             debug(ERROR_MESSAGE)
 
             session["art"] = json.dumps([ERROR_MESSAGE])
-            return redirect(url_for('index'))
+            return redirect(url_for("index"))
 
         letters.append(char.representation.split("|"))
 
     art = ["".join(line) for line in zip(*letters)]
-
     session["art"] = json.dumps(art)
+
     return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
-    os.environ["FLASK_APP"] = "KrushilNaikFinalProject"
-    os.system("flask run --port 3000")
+    app.run(debug=False, port=3000)
