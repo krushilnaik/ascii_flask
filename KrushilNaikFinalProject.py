@@ -4,7 +4,7 @@
 
 """
 This is a simple website using the current directory as a server.
-The frontend (http://localhost:3000) is pretty simple;
+The frontend is pretty simple;
 Enter some text and hit sumbit for an ASCII art representation.
 If you typed an unsupported character, it'll alert you.
 
@@ -14,6 +14,10 @@ which is better for something being graded by a human
 Changes from midterm:
     Use Flask instead of http.server
     Revamp the site UI a bit
+
+To run:
+    1) `python KrushilNaikFinalProject.py` from 'ascii_flask' directory
+    2) Visit http://localhost:3000 from any browser
 """
 
 import json
@@ -36,7 +40,7 @@ app.secret_key = "SUPER_SECRET_KEY"
 @app.route("/")
 def index():
     """
-    The frontend (http://localhost:3000)
+    The frontend
     """
 
     art = json.loads(session.setdefault("art", "[]"))
@@ -77,5 +81,5 @@ def art():
 
 
 if __name__ == "__main__":
-    # Run the Flask app at http://localhost:3000
+    # Run the Flask app
     app.run(debug=False, port=3000)
