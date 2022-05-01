@@ -22,7 +22,9 @@
           {% for line in art %}
             <div>
               {% for char in line %}
-                <span class="{% if char == '#' or error %} fg {% else %} bg {% endif %}">{% if char == " " %}&nbsp;{% else %}{{char}}{% endif %}</span>
+                <span class="{% if char == '#' or error %} fg {% else %} bg {% endif %}">
+                  {% if char == " " %}&nbsp;{% else %}{{char}}{% endif %}
+                </span>
               {% endfor %}
             </div>
           {% endfor %}
@@ -30,7 +32,7 @@
         <h2>Your masterpiece</h2>
       </div>
       <form action="/ascii" method="post">
-        <input type="text" name="text" id="text" placeholder="Type something:" required />
+        <input type="text" name="text" id="text" placeholder="Type something:" required maxlength="10" />
         <button type="submit">
           <i class="fa-solid fa-pen-fancy"></i>
         </button>
